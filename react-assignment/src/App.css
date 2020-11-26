@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+.App {
+  font-family: "Roboto slab", sans-serif;
+}
+nav {
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0px;
+  color: white;
+  transition: 0.5s;
+  border-bottom: 1px solid gray;
+}
+.nav-content {
+  font-weight: normal;
+  cursor: pointer;
+}
+.nav-scrolled {
+  color: #4597e4;
+  background-color: black;
+}
+.nav-scrolled .nav-content:hover {
+  color: white;
+}
+.banner {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("images/banner.jpg");
+  background-position: fixed;
+  background-size: cover;
+  height: 791px;
+}
+
+.intro {
+  height: 505px;
+}
+.products {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("images/shop-bread-1.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+.pro-item:hover .desc {
+  color: #000;
+}
+/* .pro-item:hover,
+.why-item:hover {
+  transform: scale(1.01);
+  transition: all 0.5s;
+} */
+.why {
+  background-image: url("images/why_bg.png");
+  background-size: cover;
+}
+.spec-img {
+  margin-left: 61px;
+}
+.customer {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("images/customer_bg.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+.customer-item:hover img {
+  transform: scale(1.2);
+  transition: all 0.5s;
+}
+
+.customer-item:hover p {
+  color: white;
+}
+.customer-item:hover {
+  cursor: pointer;
+}
+.hover-btn:hover {
+  background: rgba(76, 175, 80, 0);
+  box-shadow: inset 0px 0px 0px 1px #4597e4;
+  transition: 0.5s;
+}
+.hover-btn:hover span {
+  color: #4597e4;
+}
+.hover-btn:hover i {
+  color: #4597e4;
+}
+.line {
+  background: #4597e4;
+  width: 150px;
+  height: 0px;
+  border: 1px solid #4597e4;
+}
+.second-line {
+  background: #4597e4;
+  width: 100px;
+  height: 0px;
+  border: 1.3px solid #4597e4;
+}
+
+.hover-box:hover {
+  background: #4597e4;
+  box-shadow: inset 0px 0px 0px 1px #4597e4;
+  transition: 0.2s;
+}
+.hover-box:hover p {
+  color: white;
+}
+.hover-box:hover i {
+  color: white;
+}
+.bread {
+  border-bottom: 1px solid gray;
+}
+.about-bread {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("images/about-bread.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+.services-bread {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("images/service-bread.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+.gallery-bread {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("images/gallery-bread.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.blog-bread {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("images/blog-bread.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.shop-bread {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("images/shop-bread-1.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.contact-bread {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("images/contact-bread-1.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+.blog-item:hover .blog-name{
+  color: #4597e4;
+}
+.util{
+  height: 300px;
+}
