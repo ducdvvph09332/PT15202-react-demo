@@ -22,7 +22,7 @@ const Nav = () => {
     return (
         <nav className={`z-50 ${nav ? 'nav-scrolled' : ''}`}>
             <div className="px-32">
-                <div className="grid grid-cols-5 items-center p-2">
+                <div className="grid grid-cols-5 items-center py-2">
                     <a href="#"><img src="../../images/Feng_shui_logo.png" width="90px" className="" alt="" /></a>
                     <ul className="col-span-3 text-xl font-medium">
                         <li className="inline-block p-4"><Link className="nav-content hover:no-underline hover:text-blue-400" to="/"> Home</Link></li>
@@ -34,8 +34,9 @@ const Nav = () => {
                         <li className="inline-block pl-4"><Link className="nav-content hover:no-underline hover:text-blue-400" to="/contact">Contact</Link></li>
                     </ul>
                     <div className="text-right">
-                        <a className="px-2 nav-content hover:no-underline hover:text-blue-400"><i className="fas fa-user"></i> Login</a>
-                        <a className="px-2 nav-content hover:no-underline hover:text-blue-400"><i className="fas fa-pencil-alt"></i> Register</a>
+                        <a className="px-1 nav-content hover:no-underline hover:text-blue-400"><i className="fas fa-user"></i> Login</a>
+                        <a className="px-1 nav-content hover:no-underline hover:text-blue-400"><i className="fas fa-pencil-alt"></i> Register</a>
+                        <Link to="/cart" className="px-1 nav-content hover:no-underline hover:text-blue-400"><i class="fas fa-shopping-cart"></i> Cart</Link>
                     </div>
                 </div>
             </div>

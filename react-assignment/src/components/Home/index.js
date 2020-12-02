@@ -26,13 +26,14 @@ const Home = () => {
     fetch(API_BLOG)
       .then(response => response.json())
       .then(data => setBlogs(data));
+    window.scrollTo(0, 0)
   }, [])
 
   return (
     <>
       <Banner />
       <Welcome />
-      <FeaturedProducts products={products}/>
+      <FeaturedProducts products={products} />
       <Staffs />
       <Customers />
       <MostViewBlogs blogs={blogs} />

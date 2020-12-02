@@ -1,5 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .App {
   font-family: "Roboto slab", sans-serif;
 }
@@ -19,18 +30,23 @@ nav {
 .nav-scrolled {
   color: #4597e4;
   background-color: black;
+  transform: scale(1.01);
 }
 .nav-scrolled .nav-content:hover {
   color: white;
 }
-.banner {
+.bg-1 {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("images/banner.jpg");
-  background-position: fixed;
-  background-size: cover;
-  height: 791px;
 }
-
+.bg-2 {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("images/gallery-bread.jpg");
+}
+.bg-3 {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("images/shop-bg.jpg");
+}
 .intro {
   height: 505px;
 }
@@ -39,6 +55,12 @@ nav {
     url("images/shop-bread-1.jpg");
   background-attachment: fixed;
   background-size: cover;
+}
+.shop {
+  height: 1100px;
+}
+.pro-item img {
+  height: 100%;
 }
 .pro-item:hover .desc {
   color: #000;
@@ -149,9 +171,15 @@ nav {
   background-attachment: fixed;
   background-size: cover;
 }
-.blog-item:hover .blog-name{
+.cart-bread {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("images/cart-bread.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+.blog-item:hover .blog-name {
   color: #4597e4;
 }
-.util{
+.util {
   height: 300px;
 }

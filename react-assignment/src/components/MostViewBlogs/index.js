@@ -13,8 +13,8 @@ const MostViewBlogs = ({ blogs }) => {
                 <div className="grid grid-cols-3 gap-10 pb-24">
                     {blogs.map((blog, index) => (
                         <div className="blog-item bg-gray-200 rounded" key={index}>
-                            <div className="overflow-hidden">
-                                <img src={`../../images/${blog.image[0].name}`} className="blog-img transform hover:scale-110 transition duration-500" alt="" />
+                            <div className="overflow-hidden rounded">
+                                <img src={`http://localhost:1337${blog.image[0].url}`} className="blog-img transform hover:scale-110 transition duration-500" alt="" />
                             </div>
                             <div className="p-4">
                                 <p className="blog-name text-xl font-semibold mb-2">{blog.name}</p>
