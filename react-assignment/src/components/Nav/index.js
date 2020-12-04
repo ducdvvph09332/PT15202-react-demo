@@ -6,7 +6,8 @@ import {
     useLocation,
 } from "react-router-dom";
 
-const Nav = () => {
+const Nav = ({user}) => {
+    console.log(user);
     const [nav, setNav] = useState(false);
 
     const changeNavBg = () => {
@@ -34,9 +35,19 @@ const Nav = () => {
                         <li className="inline-block pl-4"><Link className="nav-content hover:no-underline hover:text-blue-400" to="/contact">Contact</Link></li>
                     </ul>
                     <div className="text-right">
-                        <a className="px-1 nav-content hover:no-underline hover:text-blue-400"><i className="fas fa-user"></i> Login</a>
-                        <a className="px-1 nav-content hover:no-underline hover:text-blue-400"><i className="fas fa-pencil-alt"></i> Register</a>
-                        <Link to="/cart" className="px-1 nav-content hover:no-underline hover:text-blue-400"><i class="fas fa-shopping-cart"></i> Cart</Link>
+                        {(user.email !== "")?(
+                            <>
+                            <Link to="" className="px-1 nav-content hover:no-underline hover:text-blue-400"><i className="fas fa-user"></i> {user.email}</Link>
+                            <a href="/">Logout</a>
+                            <Link to="/cart" className="px-1 nav-content hover:no-underline hover:text-blue-400"><i class="fas fa-shopping-cart"></i> Cart</Link>
+                            </>
+                        ):(
+                            <>
+                            <Link to="/auth/login" className="px-1 nav-content hover:no-underline hover:text-blue-400"><i className="fas fa-user"></i> Login</Link>
+                            <a className="px-1 nav-content hover:no-underline hover:text-blue-400"><i className="fas fa-pencil-alt"></i> Register</a>
+                            </>
+                            )
+                        }
                     </div>
                 </div>
             </div>

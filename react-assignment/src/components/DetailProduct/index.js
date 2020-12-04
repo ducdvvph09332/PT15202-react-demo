@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import NumberFormat from 'react-number-format';
 import FeaturedProducts from '../FeaturedProducts'
 
-const DetailProduct = ({ addToCart }) => {
+const DetailProduct = ({ addToCart, user }) => {
+    console.log(user);
     let { id } = useParams();
     const API_DETAIL_PRODUCT = `http://localhost:1337/products/${id}`;
     const [detail, setDetail] = useState([]);
     const [count, setCount] = useState(1);
-    if(count<0){
+    if (count < 0) {
         setCount(0)
     }
-    if(count>detail.slug){
+    if (count > detail.slug) {
         setCount(detail.slug)
     }
 
@@ -65,12 +66,22 @@ const DetailProduct = ({ addToCart }) => {
                             </div>
                         </p>
                         <p className="mt-3">
-                            <button className="hover-btn bg-blue-500 py-2 px-3 rounded text-white text-xl"
-                                onClick={() => addToCart(detail.id, count)}
-                            ><span
-                            ><i class="fas fa-cart-plus"></i>&nbsp; Add To Cart</span></button>
-                            &nbsp; &nbsp;
-                            <button className="hover-btn bg-blue-500 py-2 px-3 rounded text-white text-xl" onClick={() => addToCart(detail.id, count)}><span> Buy Now</span></button>
+                            {(user.email === "") ? (
+                                <>
+                                    <Link to="/auth/login" className="btn hover-btn bg-blue-500 py-2 px-3 rounded text-white text-xl">
+                                        <span><i class="fas fa-cart-plus"></i>&nbsp; Add To Cart</span></Link>
+                                        &nbsp; &nbsp;
+                                    <Link to="/auth/login" className="btn hover-btn bg-blue-500 py-2 px-3 rounded text-white text-xl" onClick={() => addToCart(detail.id, count)}><span> Buy Now</span></Link>
+                                </>
+                            ) : (
+                                    <>
+                                        <button className="hover-btn bg-blue-500 py-2 px-3 rounded text-white text-xl"
+                                            onClick={() => addToCart(detail.id, count)}>
+                                            <span><i class="fas fa-cart-plus"></i>&nbsp; Add To Cart</span></button>
+                                    &nbsp; &nbsp;
+                                    <button className="hover-btn bg-blue-500 py-2 px-3 rounded text-white text-xl" onClick={() => addToCart(detail.id, count)}><span> Buy Now</span></button>
+                                    </>
+                                )}
                         </p>
                     </div>
                 </div>
@@ -79,7 +90,7 @@ const DetailProduct = ({ addToCart }) => {
                     <div className="mt-3">{detail.desc}</div>
                 </div>
             </div>
-        </section>
+        </section >
     )
 }
 

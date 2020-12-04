@@ -57,7 +57,7 @@ nav {
   background-size: cover;
 }
 .shop {
-  height: 1100px;
+  min-height: 1100px;
 }
 .pro-item img {
   height: 100%;

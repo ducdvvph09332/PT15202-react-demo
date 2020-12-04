@@ -27,6 +27,7 @@ const Products = ({ products, categories, category }) => {
                                         </div>
                                         <div className="pro-box text-base font-semibold p-3">
                                             <div className="">{product.name}</div>
+                                            <span className="text-blue-500 text-sm font-light"><i class="fas fa-tags"></i> {product.category.name} </span>
                                             <div className="desc text-sm font-normal mt-1">{product.short_desc}</div>
                                             <div className="grid grid-cols-2 items-center mt-1">
                                                 <div className="text-blue-500"><NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} prefix={'₫'} /></div>
