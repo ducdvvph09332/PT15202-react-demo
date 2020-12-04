@@ -36,7 +36,8 @@ const Nav = () => {
                     <div className="text-right">
                         <a className="px-1 nav-content hover:no-underline hover:text-blue-400"><i className="fas fa-user"></i> Login</a>
                         <a className="px-1 nav-content hover:no-underline hover:text-blue-400"><i className="fas fa-pencil-alt"></i> Register</a>
-                        <Link to="/cart" className="px-1 nav-content hover:no-underline hover:text-blue-400"><i class="fas fa-shopping-cart"></i> Cart</Link>
+                        <Link to="/cart" className="px-1 nav-content hover:no-underline hover:text-blue-400"><i class="fas fa-shopping-cart"></i> Cart
+                        </Link>
                     </div>
                 </div>
             </div>

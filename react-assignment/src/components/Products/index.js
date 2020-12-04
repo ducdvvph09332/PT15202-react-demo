@@ -14,7 +14,7 @@ const Products = ({ products, categories, category }) => {
 
     return (
         <section className="shop products">
-            <div className="container mx-auto text-white pb-20">
+            <div className="container mx-auto text-white pb-24">
                 <div className="text-4xl font-bold p-16 pb-10 text-center">Our New <span className="text-blue-500">Products</span></div>
                 <div className="grid grid-cols-4 gap-10">
                     <div className="col-span-3">
@@ -25,8 +25,9 @@ const Products = ({ products, categories, category }) => {
                                         <div className="overflow-hidden h-64">
                                             <img src={`http://localhost:1337${product.image[0].url}`} className="pro-img transform hover:scale-125 transition duration-500" width="100%" alt="" />
                                         </div>
-                                        <div className="pro-box text-base font-semibold p-3">
-                                            <div className="">{product.name}</div>
+                                        <div className="pro-box p-3">
+                                            <div className="text-base font-semibold">{product.name}</div>
+                                            <div className="text-sm font-normal text-blue-500 my-1"><i class="fas fa-tags"></i> {product.category.name}</div>
                                             <div className="desc text-sm font-normal mt-1">{product.short_desc}</div>
                                             <div className="grid grid-cols-2 items-center mt-1">
                                                 <div className="text-blue-500"><NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} prefix={'₫'} /></div>
@@ -76,6 +77,7 @@ const Products = ({ products, categories, category }) => {
                                     <input type="number" placeholder="To" className="col-span-2 bg-gray-400 w-full focus:text-black pl-1" name="toPrice" id=""
                                     />
                                 </div>
+                                <button className="bg-blue-500 w-full h-10 mt-3 rounded text-white">Apply</button>
                             </form>
 
                         </div>
@@ -89,7 +91,6 @@ const Products = ({ products, categories, category }) => {
                         </div>
                     </div>
                 </div>
-                <div className="text-center"></div>
             </div>
         </section>
     )

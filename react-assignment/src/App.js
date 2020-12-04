@@ -75,25 +75,26 @@ function App() {
 
   const onCart = (id, amount) => {
     fetch(`${API_PRODUCT}/${id}`)
-      .then(response => response.json())
-      .then(data => setCart([
-        ...cart,
-        {
-          amount: amount,
-          ...data
-        }
-      ]))
-      .then(() => {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Add to cart successfully',
-          showConfirmButton: false,
-          timer: 1500
-        })
+    .then(response => response.json())
+    .then(data => setCart([
+      ...cart,
+      {
+        amount: amount,
+        ...data
+      }
+    ]))
+    .then(() => {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Add to cart successfully',
+        showConfirmButton: false,
+        timer: 1500
       })
+    })
   }
   // console.log(cart);
+  
 
   // delete cart item
   const onDeleteCart = (id) => {
@@ -111,7 +112,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Nav />
+        <Nav/>
         <Switch>
           <Route exact path="/">
             <Home />
@@ -139,6 +140,7 @@ function App() {
           <Route exact path="/shop">
             <Bread data="Shop" bg="shop-bread" />
             <Products products={products} categories={categories} category={onCategory} />
+            
           </Route>
           <Route exact path="/shop/product/:id">
             <Bread data="Product" bg="shop-bread" />
