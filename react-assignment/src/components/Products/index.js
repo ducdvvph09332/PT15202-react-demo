@@ -1,16 +1,82 @@
 import React, { useEffect, useState } from 'react'
 import NumberFormat from 'react-number-format'
 import { Link } from 'react-router-dom'
+import Footer from '../Footer';
+import Pagination from '../Pagination';
 
-const Products = ({ products, categories, category }) => {
+const Products = ({ categories }) => {
+    // console.log(products);
 
-    //search by name
+    const [listProducts, setListProducts] = useState([]);
+    const [totalItem, setTotalItem] = useState(0);
+    const [filter, setFilter] = useState({
+        start: 0,
+        limit: 6,
+        page: 1,
+    })
+    useEffect(() => {
+        fetch('http://localhost:1337/products/count')
+            .then(res => res.json())
+            .then(data => setTotalItem(data))
+    }, [])
+
+    const API_PRODUCT = `http://localhost:1337/products?_start=${filter.start}&_limit=${filter.limit}`;
+    useEffect(() => {
+        fetch(API_PRODUCT)
+            .then(response => response.json())
+            .then(data => setListProducts(data))
+        window.scrollTo(0, 0)
+    }, [filter]);
+
+
+
+    const onPageChange = (newPage) => {
+        let newStart;
+        if (newPage === 1) {
+            newStart = 0;
+        } else {
+            for (let i = 1; i < newPage; i++) {
+                newStart = i * filter.limit;
+            }
+        }
+
+        setFilter({
+            ...filter,
+            start: newStart,
+            page: newPage
+        })
+    }
+
+    // console.log(filter);
+
+    // RENDER PRODUCTS BY CATEGORY
+    const API_CATE = `http://localhost:1337/categories`;
+    const [id, setId] = useState(null);
+    const category = (id) => {
+        setId(id);
+    }
+
+    useEffect(() => {
+        if (id === 0) {
+            fetch(API_PRODUCT)
+                .then(response => response.json())
+                .then(data => setListProducts(data));
+        } else {
+            const API_CATEGORY = `${API_CATE}/${id}`;
+            fetch(API_CATEGORY)
+                .then(response => response.json())
+                .then(data => setListProducts(data.products))
+        }
+    }, [id])
+
+    //SEARCH BY NAME
     const [search, setSearch] = useState("");
-    const filterProductsByName = products.filter(product => product.name.toLowerCase().includes(search.toLocaleLowerCase()))
+    const filterProductsByName = listProducts.filter(product => product.name.toLowerCase().includes(search.toLocaleLowerCase()))
 
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
+
 
     return (
         <section className="shop products">
@@ -27,7 +93,24 @@ const Products = ({ products, categories, category }) => {
                                         </div>
                                         <div className="pro-box text-base font-semibold p-3">
                                             <div className="">{product.name}</div>
-                                            <span className="text-blue-500 text-sm font-light"><i class="fas fa-tags"></i> {product.category.name} </span>
+                                            <span className="text-blue-500 text-sm font-light">
+                                                {
+                                                    (product.category.name) ? (
+                                                        <>
+                                                            <i class="fas fa-tags"></i>&nbsp;
+                                                            {product.category.name}
+                                                        </>
+                                                    ) : (
+                                                            <>
+                                                                <i class="fas fa-tags"></i>&nbsp;
+                                                                {categories.map(item => (
+                                                                    (item.id === product.category) ? item.name : ""
+                                                                ))
+                                                                }
+                                                            </>
+                                                        )
+                                                }
+                                            </span>
                                             <div className="desc text-sm font-normal mt-1">{product.short_desc}</div>
                                             <div className="grid grid-cols-2 items-center mt-1">
                                                 <div className="text-blue-500"><NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} prefix={'₫'} /></div>
@@ -90,7 +173,9 @@ const Products = ({ products, categories, category }) => {
                         </div>
                     </div>
                 </div>
-                <div className="text-center"></div>
+                <div className="text-center">
+                    <Pagination page={filter.page} limit={filter.limit} pageChange={onPageChange} totalItem={totalItem} />
+                </div>
             </div>
         </section>
     )

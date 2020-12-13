@@ -10,7 +10,7 @@ import MostViewBlogs from '../MostViewBlogs'
 
 const Home = () => {
 
-  const API_PRODUCT = `http://localhost:1337/products?_limit=6`;
+  const API_PRODUCT = `http://localhost:1337/products`;
 
   const [products, setProducts] = useState([]);
 

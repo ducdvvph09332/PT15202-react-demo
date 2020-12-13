@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
     BrowserRouter as Router,
@@ -6,8 +6,7 @@ import {
     useLocation,
 } from "react-router-dom";
 
-const Nav = ({user}) => {
-    console.log(user);
+const Nav = ({ logInfo, logout }) => {
     const [nav, setNav] = useState(false);
 
     const changeNavBg = () => {
@@ -34,18 +33,24 @@ const Nav = ({user}) => {
                         <li className="inline-block p-4"><Link className="nav-content hover:no-underline hover:text-blue-400" to="/shop">Shop</Link></li>
                         <li className="inline-block pl-4"><Link className="nav-content hover:no-underline hover:text-blue-400" to="/contact">Contact</Link></li>
                     </ul>
-                    <div className="text-right">
-                        {(user.email !== "")?(
+                    <div className="text-right text-base">
+                        {(logInfo.length !== 0) ? (
                             <>
-                            <Link to="" className="px-1 nav-content hover:no-underline hover:text-blue-400"><i className="fas fa-user"></i> {user.email}</Link>
-                            <a href="/">Logout</a>
-                            <Link to="/cart" className="px-1 nav-content hover:no-underline hover:text-blue-400"><i class="fas fa-shopping-cart"></i> Cart</Link>
+                                <div className="flex items-center pl-24">
+                                    <div className="relative user-menu">
+                                        <Link to="" className="px-1 nav-content hover:no-underline hover:text-blue-500"><i className="fas fa-user"></i> {logInfo[0].name} &nbsp;</Link>
+                                        <button className="user-item absolute bg-white rounded py-1 pl-1 text-blue-500" onClick={logout}> <i class="fas fa-sign-out-alt"></i> Logout &nbsp;</button>
+                                    </div>
+                                    <Link to="/cart" className="px-1 nav-content hover:no-underline hover:text-blue-400"><i class="fas fa-shopping-cart"></i> Cart</Link>
+                                </div>
                             </>
-                        ):(
-                            <>
-                            <Link to="/auth/login" className="px-1 nav-content hover:no-underline hover:text-blue-400"><i className="fas fa-user"></i> Login</Link>
-                            <a className="px-1 nav-content hover:no-underline hover:text-blue-400"><i className="fas fa-pencil-alt"></i> Register</a>
-                            </>
+                        ) : (
+                                <>
+                                    <div className="flex items-center pl-20">
+                                        <Link to="/auth/login" className="px-1 nav-content hover:no-underline hover:text-blue-400"><i className="fas fa-user"></i> Login</Link>&nbsp;&nbsp;
+                                    <Link to="/auth/register" className="px-1 nav-content hover:no-underline hover:text-blue-400"><i className="fas fa-pencil-alt"></i> Register</Link>
+                                    </div>
+                                </>
                             )
                         }
                     </div>

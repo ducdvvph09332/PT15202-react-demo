@@ -26,7 +26,7 @@ const Gallery = () => {
                 {galleries.map((item, index) => (
                     <div className="grid grid-cols-4" key={index}>
                         {item.image.map((url, index) => (
-                            <img src={`http://localhost:1337${url.url}`} key={index} alt="" />
+                            <img src={`http://localhost:1337${url.url}`} width="100%" height="280px" key={index} alt="" />
                         ))}
                     </div>
                 ))}
