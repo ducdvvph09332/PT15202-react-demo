@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const RelateProducts = ({ products, detailRate, detailCate }) => {
+const RelateProducts = ({ products, detailId, detailRate, detailCate }) => {
 
-    const RelateProducts = products.filter(item => item.rate === detailRate || item.category.name === detailCate)
+    const RelateProducts = products.filter(item => item.id !== detailId && (item.rate === detailRate || item.category.name === detailCate))
 
     return (
         <section className="relate-products bg-gray-100 pb-20">

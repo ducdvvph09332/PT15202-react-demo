@@ -13,6 +13,7 @@ import Bread from './components/Bread';
 import Services from './components/Services';
 import DetailProduct from './components/DetailProduct';
 import Split from 'react-split';
+import axios from 'axios';
 
 import React from "react";
 import {
@@ -104,57 +105,53 @@ function App() {
   }
 
   // LOGIN
-  const API_CUSTOMER = 'http://localhost:1337/customers';
-  const [customers, setCustomers] = useState([])
-  useEffect(() => {
-    fetch(API_CUSTOMER)
-      .then(response => response.json())
-      .then(data => setCustomers(data));
-  }, [])
 
-  const [logInfo, setLogInfo] = useState([]);
+  const [logInfo, setLogInfo] = useState(null);
   const [error, setError] = useState([]);
 
   const onLoginData = (data) => {
-    const customerInfo = customers.filter(item => item.email === data.email && item.password === data.password)
-    // console.log(customerInfo);
-    if (customerInfo.length !== 0) {
-      setLogInfo(customerInfo);
-      window.history.back();
-    } else {
-      setError("Sai thông tin đăng nhập");
-    }
+    axios
+      .post('http://localhost:1337/auth/local', {
+        identifier: data.email,
+        password: data.password,
+      })
+      .then(response => {
+        // Handle success.
+        setLogInfo(response.data.user)
+        // console.log(response.data.user);
+        window.history.back();
+      })
+      .catch(() => {
+        setError("Sai thông tin đăng nhập");
+      });
   }
+
   // LOGOUT
   const onLogout = () => {
-    setLogInfo([]);
+    setLogInfo(null);
     setError("");
   }
   // const [loading, setLoading] = useState(false);
 
   // REGISTER
-  const onRegister = (data) => {
-    // console.log(data);
-    fetch(API_CUSTOMER,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-      })
-      .then(response => response.json())
-    const newCustomer = {
-      id: Math.floor(Math.random() * 100),
-      ...data
+
+    const onRegister = (data) =>{
+      axios
+        .post('http://localhost:1337/auth/local/register', {
+          username: data.name,
+          email: data.email,
+          password: data.password,
+        })
+        .then(response => {
+          // Handle success.
+          setLogInfo(response.data.user);
+          window.history.back()
+        })
+        .catch(() => {
+          // Handle error.
+          setError("Đăng ký không thành công")
+        });
     }
-    setCustomers([
-      ...customers,
-      newCustomer
-    ])
-    setLogInfo([newCustomer]);
-    window.history.back();
-  }
 
   return (
     <Router>
@@ -205,7 +202,7 @@ function App() {
                 <Contact />
               </Route>
               <Route exact path="/cart">
-                {(logInfo.length !== 0) ? (
+                {(logInfo !== null) ? (
                   <>
                     <Bread data="Cart" bg="cart-bread" />
                     <Cart cart={cart} deleteCart={onDeleteCart} />

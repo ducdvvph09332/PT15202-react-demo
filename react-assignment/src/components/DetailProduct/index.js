@@ -83,7 +83,7 @@ const DetailProduct = ({ addToCart, logInfo }) => {
                                 </div>
                             </p>
                             <p className="mt-3">
-                                {(logInfo.length !== 0) ? (
+                                {(logInfo !== null) ? (
                                     <>
                                         <button className="hover-btn bg-blue-500 py-2 px-3 rounded text-white text-xl"
                                             onClick={() => addToCart(detail.id, count)}>
