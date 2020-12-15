@@ -34,6 +34,7 @@ const Cart = ({ cart, deleteCart }) => {
 
     //SET AMOUNT    
     const[count, setCount] = useState([])
+    
 
     useEffect(() => {
         window.scrollTo(0, 0)

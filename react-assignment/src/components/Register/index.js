@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 
-const Register = ({error, register }) => {
-    console.log(error);
+const Register = ({ errorName, errorEmail, errorPassword, register }) => {
+    // console.log(error);
     const [data, setData] = useState({});
     const onHandleChange = (e) => {
         const { name, value } = e.target;
@@ -17,9 +17,9 @@ const Register = ({error, register }) => {
         register(data);
     }
     return (
-        <section className="login bg-login py-24">
+        <section className="login bg-login py-16">
             <form action="" onSubmit={handleSubmit} className="form-login text-center mx-auto relative">
-                <div className="form-login mx-auto bg-black opacity-75 rounded z-10 absolute"></div>
+                <div className="form-register mx-auto bg-black opacity-75 rounded z-10 absolute"></div>
                 <div className="mx-auto rounded shadow-lg px-10 py-10 z-20 relative">
                     <div className="">
                         <img src="../images/Feng_shui_logo.png" width="130px" className="mx-auto pt-4 pb-6" alt="" />
@@ -29,18 +29,27 @@ const Register = ({error, register }) => {
                                 onChange={onHandleChange}
                             />
                         </div>
+                        {errorName !== "" ? (
+                            <span className="text-red-500">{errorName}</span>
+                        ) : ""}
                         <div className="relative flex items-center">
                             <i class="fas fa-user text-blue-600 absolute left-0 -mt-1 pl-3"></i>
                             <input type="text" placeholder="Your Email" name="email" id="email" className="my-2 pl-5 w-full h-12 bg-gray-700 text-white"
                                 onChange={onHandleChange}
                             />
                         </div>
+                        {errorEmail !== "" ? (
+                            <span className="text-red-500">{errorEmail}</span>
+                        ) : ""}
                         <div className="relative flex items-center">
                             <i class="fas fa-lock text-blue-600 absolute left-0 -mt-1 pl-3"></i>
                             <input type="password" placeholder="Your Password" name="password" id="password" className="my-2 pl-5 w-full h-12 bg-gray-700 text-white"
                                 onChange={onHandleChange}
                             />
                         </div>
+                        {errorPassword !== "" ? (
+                            <span className="text-red-500">{errorPassword}</span>
+                        ) : ""}
                         <input type="submit" className="px-3 py-2 w-full mt-6 bg-blue-500 text-white hover:opacity-75" value="Register" />
                         <div className="py-3 text-white">
                             <span>Or Login With</span>

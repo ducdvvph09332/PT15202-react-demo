@@ -24,9 +24,7 @@ const Login = ({ error, login }) => {
                     <div className="">
                         <img src="../images/Feng_shui_logo.png" width="130px" className="mx-auto pt-4 pb-6" alt="" />
                             {error !== "" ? (
-                                <>
                                 <span className="text-red-500 text-center">{error}</span>
-                                </>
                             ) : ""}
                         <div className="relative flex items-center">
                             <i class="fas fa-user text-blue-600 absolute left-0 -mt-1 pl-3"></i>

@@ -107,7 +107,7 @@ function App() {
   // LOGIN
 
   const [logInfo, setLogInfo] = useState(null);
-  const [error, setError] = useState([]);
+  const [error, setError] = useState("");
 
   const onLoginData = (data) => {
     axios
@@ -119,6 +119,7 @@ function App() {
         // Handle success.
         setLogInfo(response.data.user)
         // console.log(response.data.user);
+        setError("")
         window.history.back();
       })
       .catch(() => {
@@ -133,9 +134,38 @@ function App() {
   }
   // const [loading, setLoading] = useState(false);
 
+  //VALIDATION
+  const [errorName, setErrorName] = useState("");
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
+
+
   // REGISTER
 
-    const onRegister = (data) =>{
+  const onRegister = (data) => {
+    if(!data.name){
+      setErrorName("Không được để trống tên!");
+    } else if(data.name.length < 3){
+      setErrorName("Độ dài lớn hơn 2 và nhỏ hơn 50 ký tự!");
+    } else{
+      setErrorName("");
+    }
+    if (!data.email){
+      setErrorEmail("Không được để trống email!");
+    } else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(data.email)){
+      setErrorEmail("Email không đúng định dạng!");
+    } else{
+      setErrorEmail("");
+    }
+    if (!data.password){
+      setErrorPassword("Không được để trống mật khẩu!");
+    } else if(data.password.length < 6){
+      setErrorPassword("Mật khẩu ít nhất 6 ký tự!");
+    } else{
+      setErrorPassword("");
+    }
+
+    if (errorName === "" && errorEmail === "" && errorPassword === "") {
       axios
         .post('http://localhost:1337/auth/local/register', {
           username: data.name,
@@ -147,11 +177,8 @@ function App() {
           setLogInfo(response.data.user);
           window.history.back()
         })
-        .catch(() => {
-          // Handle error.
-          setError("Đăng ký không thành công")
-        });
     }
+  }
 
   return (
     <Router>
@@ -161,7 +188,7 @@ function App() {
             <Login login={onLoginData} error={error} />
           </Route>
           <Route exact path="/auth/register">
-            <Register register={onRegister} />
+            <Register register={onRegister} errorName={errorName} errorEmail={errorEmail} errorPassword={errorPassword}/>
           </Route>
           <>
             <Nav logInfo={logInfo} logout={onLogout} />

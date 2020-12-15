@@ -198,6 +198,10 @@ nav {
   width: 460px;
   min-height: 610px;
 }
+.form-register{
+  width: 460px;
+  min-height: 670px;
+}
 .bg-fb{
   background-color: #1874eb;
 }
